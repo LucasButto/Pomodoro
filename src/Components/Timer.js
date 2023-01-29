@@ -5,12 +5,13 @@ import TimeContext from '../Contexts/TimeContext'
 
 const Timer = () => {
     const {seconds, minutes} = useContext(TimeContext)
-    const condition = (seconds < 10) ? "0" : ""
+    const conditionS = (seconds < 10) ? "0" : ""
+    const conditionM = (minutes < 10) ? "0" : ""
   return (
     <>
         <div className="pomodoro-timer-container">
             <div className="timer">
-                <p>{String(minutes) + ":" + String(condition+seconds)}</p>
+                <p>{String(conditionM+minutes) + ":" + String(conditionS+seconds)}</p>
             </div>
         </div>
     </>

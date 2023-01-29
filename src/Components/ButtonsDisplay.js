@@ -1,32 +1,14 @@
 import React from 'react'
-import {useContext, useState, useEffect} from 'react'
+import {useContext} from 'react'
 import TimeContext from '../Contexts/TimeContext'
-import '../Styles/ButtonsDisplay.css'
 import Button from './Button'
+import { useTimer } from '../Hooks/useTimer'
+
+import '../Styles/ButtonsDisplay.css'
 
 const ButtonsDisplay = () => {
-    const {minutes, setMinutes, seconds, setSeconds} = useContext(TimeContext)
-    const [isPaused, setIsPaused] = useState(true)
-    const [intervalId, setIntervalId] = useState(null);
-
-    useEffect(() => {
-        if (isPaused === false) {
-            const id = setInterval(() => {
-                if (seconds > 0) {
-                    setSeconds(seconds - 1);
-                }
-                if (seconds === 0) {
-                    if (minutes === 0) {
-                        clearInterval(id);
-                    } else {
-                        setMinutes(minutes - 1);
-                        setSeconds(59);
-                    }
-                }
-            }, 1000);
-            setIntervalId(id);
-        }
-    }, [isPaused, minutes, seconds]);
+    const {setMinutes, setSeconds} = useContext(TimeContext)
+    const {isPaused, setIsPaused} = useTimer()
 
     const controlTimerHandler = () => {
         setIsPaused(!isPaused)
