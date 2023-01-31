@@ -1,19 +1,24 @@
 @font-face {
-    font-family: digital;
-    src: url("../../public/digital-7.ttf");
+  font-family: digital;
+  src: url("../../public/digital-7.ttf");
 }
 
 .pomodoro-timer-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40vh;
-    width: 50%;
-    background-color: rgb(4, 156, 4);
-    border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 50%;
+  border-radius: 15px;
 }
 
 .timer {
-    font-family: 'digital';
-    font-size: 200px;
+  font-family: "digital";
+  font-size: 200px;
+}
+
+@media screen and (max-width: 425px) {
+  .timer {
+    font-size: 150px;
+  }
 }

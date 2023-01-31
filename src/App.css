@@ -5,4 +5,13 @@
   justify-content: center;
   height: 100vh;
   background-color: #d1d1d1;
+  transition: all 0.3s ease-in-out;
+}
+
+.rest {
+  background-color: rgb(32, 115, 170);
+}
+
+.work {
+  background-color: rgb(211, 137, 94);
 }

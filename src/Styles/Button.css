@@ -1,0 +1,40 @@
+button {
+  position: relative;
+  background-color: rgb(230, 34, 77);
+  border-radius: 5px;
+  box-shadow: rgb(121, 18, 55) 0px 4px 0px 0px;
+  padding: 15px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  width: 154px;
+  height: 49px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  overflow: hidden;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:active {
+  top: 4px;
+}
+
+.play {
+  background-color: rgb(52, 196, 124);
+  box-shadow: rgb(34, 121, 77) 0px 4px 0px 0px;
+}
+
+.pause {
+  background-color: rgb(201, 198, 30);
+  box-shadow: rgb(121, 117, 18) 0px 4px 0px 0px;
+}
+
+.reset {
+  background-color: rgb(230, 34, 77);
+  box-shadow: rgb(121, 18, 55) 0px 4px 0px 0px;
+}
