@@ -3,8 +3,8 @@ import { useState, createContext } from "react";
 const TimeContext = createContext();
 
 const TimeProvider = ({ children }) => {
-  const [minutes, setMinutes] = useState(25);
-  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(1);
   const [isPaused, setIsPaused] = useState(true);
   const [rest, setRest] = useState(null);
 
