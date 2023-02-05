@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-import TimeContext from "../Contexts/TimeContext";
+import React from "react";
+import { useTimer } from "../Hooks/useTimer";
 
 import "../Styles/Comment.css";
 
 const Comment = () => {
-  const { rest } = useContext(TimeContext);
-  const shownComment = rest ? "Take a break!" : "Time to work!";
+  const { currentSessionType } = useTimer();
+  const shownComment =
+    currentSessionType === "Session" ? "Let's Work" : "Take a Rest";
   return (
     <>
       <p className="comment">{shownComment}</p>

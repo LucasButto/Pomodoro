@@ -1,15 +1,38 @@
 import "./App.css";
 import ButtonsDisplay from "./Components/ButtonsDisplay";
 import Timer from "./Components/Timer";
-import TimeContext from "../src/Contexts/TimeContext";
-import { useContext } from "react";
 import Comment from "./Components/Comment";
+import { ButtonsDisplayConfig } from "./Components/ButtonsDisplayConfig";
+import { useTimer } from "./Hooks/useTimer";
 
 function App() {
-  const { rest } = useContext(TimeContext);
-  const backgrounStyle = rest ? "rest" : "work";
+  const {
+    handleBreakDecrement,
+    handleBreakIncrement,
+    handleSessionDecrement,
+    handleSessionIncrement,
+    sessionLength,
+    breakLength,
+    currentSessionType,
+  } = useTimer();
+  const backgrounStyle = currentSessionType === "Session" ? "work" : "rest";
+
   return (
     <div className={"pomodoro-container " + backgrounStyle}>
+      <div className="config-container">
+        <ButtonsDisplayConfig
+          title="Work Time"
+          handleDecrement={handleSessionDecrement}
+          handleIncrement={handleSessionIncrement}
+          timeLength={sessionLength}
+        />
+        <ButtonsDisplayConfig
+          title="Break Time"
+          handleDecrement={handleBreakDecrement}
+          handleIncrement={handleBreakIncrement}
+          timeLength={breakLength}
+        />
+      </div>
       <Timer />
       <ButtonsDisplay />
       <Comment />

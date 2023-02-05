@@ -1,19 +1,14 @@
 import React from "react";
 import "../Styles/Timer.css";
-import { useContext } from "react";
-import TimeContext from "../Contexts/TimeContext";
+import { useTimer } from "../Hooks/useTimer";
 
 const Timer = () => {
-  const { seconds, minutes } = useContext(TimeContext);
-  const conditionS = seconds < 10 ? "0" : "";
-  const conditionM = minutes < 10 ? "0" : "";
+  const { timeLeft, formattedTimeLeft } = useTimer();
   return (
     <>
       <div className="pomodoro-timer-container">
         <div className="timer">
-          <p>
-            {String(conditionM + minutes) + ":" + String(conditionS + seconds)}
-          </p>
+          <p>{formattedTimeLeft(timeLeft)}</p>
         </div>
       </div>
     </>

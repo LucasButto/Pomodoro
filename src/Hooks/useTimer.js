@@ -1,76 +1,85 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import TimeContext from "../Contexts/TimeContext";
-import tone from "../sounds/Tone.mp3";
 
 export const useTimer = () => {
   const {
-    minutes,
-    setMinutes,
-    seconds,
-    setSeconds,
-    rest,
-    setRest,
-    longRest,
-    setLongRest,
-    isPaused,
-    setIsPaused,
+    setIsRunning,
+    setBreakLength,
+    setSessionLength,
+    setTimeLeft,
+    setCurrentSessionType,
+    breakLength,
+    sessionLength,
+    timeLeft,
+    isRunning,
+    currentSessionType,
   } = useContext(TimeContext);
-  const [intervalId, setIntervalId] = useState(null);
-  const [counter, setCounter] = useState(0);
-  const { Howl } = require("howler");
 
-  var sound = new Howl({
-    src: [tone],
-    html5: true,
-    loop: false,
-  });
+  const handleStartStopClick = () => {
+    console.log("handleStartStopClick");
+    setIsRunning((prevIsRunning) => !prevIsRunning);
+  };
 
-  useEffect(() => {
-    if (!isPaused) {
-      let interval = setInterval(() => {
-        if (seconds > 0) {
-          setSeconds(seconds - 1);
-        } else if (minutes > 0) {
-          setMinutes(minutes - 1);
-          setSeconds(59);
-        } else if (
-          minutes === 0 &&
-          seconds === 0 &&
-          counter < 3 &&
-          (rest === false || rest === null)
-        ) {
-          sound.play();
-          setRest(!rest);
-          setMinutes(5);
-          setSeconds(0);
-        } else if (
-          minutes === 0 &&
-          seconds === 0 &&
-          counter < 3 &&
-          (rest === true || rest === null)
-        ) {
-          setCounter(counter + 1);
-          sound.play();
-          setRest(!rest);
-          setMinutes(25);
-          setSeconds(0);
-        } else if (counter === 3) {
-          sound.play();
-          setLongRest(!longRest);
-          setRest(!rest);
-          setMinutes(30);
-          setSeconds(0);
-          setCounter(0);
-        } else {
-          clearInterval(interval);
-        }
-      }, 1000);
-      setIntervalId(interval);
-    } else {
-      clearInterval(intervalId);
-    }
-    return () => clearInterval(intervalId);
-  }, [isPaused, minutes, seconds]);
+  const handleResetClick = () => {
+    setBreakLength(5);
+    setSessionLength(25);
+    setTimeLeft(25 * 60);
+    setIsRunning(false);
+    setCurrentSessionType("Session");
+  };
 
-  return { setIsPaused, isPaused };
+  const handleBreakDecrement = () => {
+    setBreakLength((prevBreakLength) => {
+      if (prevBreakLength > 1) {
+        return prevBreakLength - 1;
+      } else {
+        return prevBreakLength;
+      }
+    });
+  };
+
+  const handleBreakIncrement = () => {
+    setBreakLength((prevBreakLength) => prevBreakLength + 1);
+  };
+
+  const handleSessionDecrement = () => {
+    setSessionLength((prevSessionLength) => {
+      if (prevSessionLength > 1) {
+        setTimeLeft(prevSessionLength * 60 - 60);
+        return prevSessionLength - 1;
+      } else {
+        return prevSessionLength;
+      }
+    });
+  };
+
+  const handleSessionIncrement = () => {
+    setSessionLength((prevSessionLength) => {
+      setTimeLeft(prevSessionLength * 60 + 60);
+      return prevSessionLength + 1;
+    });
+  };
+
+  const formattedTimeLeft = (timeLeft) => {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    return `${minutes}:${seconds}`;
+  };
+
+  return {
+    breakLength,
+    sessionLength,
+    timeLeft,
+    isRunning,
+    currentSessionType,
+    handleStartStopClick,
+    handleResetClick,
+    handleBreakDecrement,
+    handleBreakIncrement,
+    handleSessionDecrement,
+    handleSessionIncrement,
+    formattedTimeLeft,
+  };
 };

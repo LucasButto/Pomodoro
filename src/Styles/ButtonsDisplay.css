@@ -5,3 +5,29 @@
   margin: 10px auto;
   gap: 30px;
 }
+
+.config-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  gap: 30px;
+}
+.config-elemnets-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#time-left {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 425px) {
+  .config-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
