@@ -6,7 +6,7 @@ import "../Styles/Comment.css";
 const Comment = () => {
   const { currentSessionType } = useTimer();
   const shownComment =
-    currentSessionType === "Session" ? "Time to Work" : "Take a Rest";
+    currentSessionType === "Session" ? "Time to work" : "Take a break";
   return (
     <>
       <p className="comment">{shownComment}</p>
