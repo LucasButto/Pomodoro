@@ -32,5 +32,5 @@ This project is licensed under the MIT license. For more information, please rev
 ## Screenshot
 
 <p align="center">
-  <img src="./src/img/proj.jpg" width="600" height="500">
+  <img src="./src/img/proj.jpg" width="600" height="400">
 </p>
