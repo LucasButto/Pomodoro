@@ -3,10 +3,10 @@
 This project is a Pomodoro clock application written in React. Pomodoro is a productivity method that involves working in short time blocks followed by short breaks. This clock will help you stay focused and improve your productivity.
 
 ## Features
+
 - Intuitive and user-friendly interface
 - Customizable work and break times
 - Sound notifications for time changes
-- Session history to monitor your progress
 
 ## Installation
 
@@ -31,4 +31,4 @@ This project is licensed under the MIT license. For more information, please rev
 
 ## Screenshot
 
-![Screenshot of React Pomodoro Clock](./screenshot.png)
+![Screenshot of React Pomodoro Clock](./src/img/proj.jpg)
