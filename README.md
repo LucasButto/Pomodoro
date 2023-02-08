@@ -31,4 +31,4 @@ This project is licensed under the MIT license. For more information, please rev
 
 ## Screenshot
 
-![Screenshot of React Pomodoro Clock](./src/img/proj.jpg =250x200)
+<img src="./src/img/proj.jpg" width="250" height="200">
